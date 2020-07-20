@@ -1,0 +1,1 @@
+This is an alert/prompt game of Rock Paper Scissors. It plays to 5 rounds and tells you if you beat the computer or lost.

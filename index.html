@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    <script>
+        function computerPlay() {
+            const rand = Math.floor((Math.random()*3)+1);
+
+            switch(rand){
+                case 1: return 'Rock';
+                    break;
+                case 2: return 'Paper';
+                    break;
+                case 3: return 'Scissors';
+                    break;
+                default: computerPlay();
+                    break;
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            let winner = null;
+            
+            switch(playerSelection){
+                case 'Rock':
+                    switch(computerSelection){
+                        case 'Rock': 
+                            break;
+                        case 'Paper': winner = 'computer';
+                            break;
+                        case 'Scissors': winner = 'player';
+                            break;
+                    }
+                    break;
+                case 'Paper':
+                    switch(computerSelection){
+                        case 'Rock': winner = 'player';
+                            break;
+                        case 'Paper':
+                            break;
+                        case 'Scissors': winner = 'computer';
+                            break;
+                    }
+                    break;
+                case 'Scissors':
+                switch(computerSelection){
+                        case 'Rock': winner = 'computer';
+                            break;
+                        case 'Paper': winner = 'player';
+                            break;
+                        case 'Scissors': 
+                            break;
+                    }
+                    break;
+            }
+            return winner;
+        }
+
+        function playerPlay(selection){
+            String, select = selection.toLowerCase();
+
+            switch(select) {
+                case 'rock': return "Rock";
+                    break;
+                case 'paper': return "Paper";
+                    break;
+                case 'scissors': return "Scissors";
+                    break;
+                default: 
+                    alert("That's not a valid option, please try again.");
+                    playerPlay(prompt("Rock, Paper, Scissors!", "Please enter your choice"));
+                    break;
+            }
+        }
+
+        function gameBestOf5(){
+            let round = 1;
+
+            let pScore = 0;
+            let cScore = 0;
+            
+            while(round != 5){
+                let computerSelection = computerPlay();
+                let playerSelection = playerPlay(prompt("Rock, Paper, Scissors!! Round: " + round + "!", " Please enter your choice"));
+
+                switch(playRound(playerSelection, computerSelection)){
+                    case 'player': pScore++;
+                        alert("You win!! Your " + playerSelection + " destroyed the computer's " + computerSelection + "!");
+                        break;
+                    case 'computer': cScore++;
+                        alert("You lose... Your " + playerSelection + " was destroyed by the computer's " + computerSelection + "...");
+                        break;
+                    case null: alert("Aww, it's a tie. Your " + playerSelection + " was the same as the computer's " + computerSelection + ".");
+                        break;
+                }
+                alert("Player: " + pScore + " - Computer: " + cScore);
+
+                round++;
+            }
+
+            if(pScore>cScore){
+                alert("You beat the computer!!");
+            } else {
+                alert("The computer beat you by " + (cScore-pScore) + " points...");
+            }
+        }
+
+        gameBestOf5();
+    </script>
+    </body>
+</html>
